@@ -1,0 +1,26 @@
+###################################
+# Python (FastAPI)
+###################################
+backend/__pycache__/
+backend/*.py[cod]
+backend/venv/
+backend/.env
+backend/.pytest_cache/
+
+###################################
+# Node (Next.js)
+###################################
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env*
+frontend/npm-debug.log*
+
+###################################
+# General
+###################################
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
