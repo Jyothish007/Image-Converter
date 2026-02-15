@@ -43,22 +43,24 @@ Features:
 - Automatically removes transparency when converting to JPEG
 - Validates file type
 
+---
 
-🔜 To Do Next
-1. Add File Size Limit
-  Prevent very large uploads.
+# 🔜 To Do Next
 
-2. Add Background Color Option for JPEG
-  Replace transparency with white instead of black.
+Add File Size Limit
+- Prevent very large uploads.
 
-3. Add Logging
-  Log requests and errors.
+Add Background Color Option for JPEG
+- Replace transparency with white instead of black.
 
-4. Add Rate Limiting
-  Protect API from abuse.
+Add Logging
+- Log requests and errors.
 
-5. Connect Frontend (Next.js)
-  Create UI with:
+Add Rate Limiting
+- Protect API from abuse.
+
+Connect Frontend (Next.js)
+- Create UI with:
   - Drag & Drop upload
   - Format selector
   - Compression slider
