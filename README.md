@@ -7,7 +7,7 @@ A backend image processing API built with **FastAPI** and **Pillow** that allows
 - Image format conversion
 - JPEG transparency handling
 
-Frontend (Next.js) can be added later to interact with this API.
+Frontend (Next.js) will be added later to interact with this API.
 
 ---
 
@@ -27,17 +27,18 @@ Frontend (Next.js) can be added later to interact with this API.
 POST /compress
 
 Features:
+
 - Resize image (optional)
 - Adjust quality (JPEG/WebP)
 - Convert format while compressing
 - Handles transparency for JPEG
-
 
 2️⃣ Image Conversion Endpoint
 
 POST /convert
 
 Features:
+
 - Convert image to another format
 - Supports: jpeg, jpg, png, webp, bmp
 - Automatically removes transparency when converting to JPEG
@@ -48,18 +49,23 @@ Features:
 # 🔜 To Do Next
 
 Add File Size Limit
+
 - Prevent very large uploads.
 
 Add Background Color Option for JPEG
+
 - Replace transparency with white instead of black.
 
 Add Logging
+
 - Log requests and errors.
 
 Add Rate Limiting
+
 - Protect API from abuse.
 
 Connect Frontend (Next.js)
+
 - Create UI with:
   - Drag & Drop upload
   - Format selector
