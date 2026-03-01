@@ -11,6 +11,14 @@ ALLOWED_FORMATS = ["jpeg", "jpg", "png", "webp", "bmp"]
 
 MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.post("/process-image")
 async def process_image(
     file: UploadFile = File(...),
