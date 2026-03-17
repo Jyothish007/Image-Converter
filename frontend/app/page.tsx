@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef } from "react";
 
 export default function Home() {
@@ -10,6 +11,9 @@ export default function Home() {
   const [height, setHeight] = useState<number | "">("");
   const [grayscale, setGrayscale] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [processedUrl, setProcessedUrl] = useState<string | null>(null);
+  const [processedSize, setProcessedSize] = useState<number | null>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -20,7 +24,16 @@ export default function Home() {
       alert("Max file size is 5MB");
       return;
     }
+
     setFile(selectedFile);
+
+    // Preview
+    const url = URL.createObjectURL(selectedFile);
+    setPreviewUrl(url);
+
+    // Reset processed state
+    setProcessedUrl(null);
+    setProcessedSize(null);
   };
 
   const handleSubmit = async () => {
@@ -49,15 +62,27 @@ export default function Home() {
     }
 
     const blob = await res.blob();
-    const url = window.URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
+
+    setProcessedUrl(url);
+    setProcessedSize(blob.size);
+
+    setLoading(false);
+  };
+
+  const handleDownload = () => {
+    if (!file || !processedUrl) return;
+
+    const originalName = file.name.includes(".")
+      ? file.name.substring(0, file.name.lastIndexOf("."))
+      : "image";
+
+    const newFileName = `${originalName}.${format}`;
 
     const a = document.createElement("a");
-    a.href = url;
-    a.download = `processed.${format}`;
+    a.href = processedUrl;
+    a.download = newFileName;
     a.click();
-
-    window.URL.revokeObjectURL(url);
-    setLoading(false);
   };
 
   return (
@@ -174,6 +199,33 @@ export default function Home() {
             Grayscale
           </label>
         </div>
+
+        {processedUrl && (
+          <div className="space-y-4 mt-6">
+            <h3 className="font-semibold">Processed Image</h3>
+
+            <Image
+              src={processedUrl}
+              alt="processed"
+              width={200}
+              height={300}
+              className="w-full max-h-64 object-contain"
+            />
+
+            <div className="text-sm text-gray-600">
+              <p>
+                <strong>Size:</strong> {(processedSize! / 1024).toFixed(2)} KB
+              </p>
+            </div>
+
+            <button
+              onClick={handleDownload}
+              className="w-full bg-green-600 text-white py-2 rounded-lg"
+            >
+              Download Image
+            </button>
+          </div>
+        )}
 
         {/* Submit Button */}
         <button
