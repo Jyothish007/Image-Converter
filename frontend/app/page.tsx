@@ -11,7 +11,6 @@ export default function Home() {
   const [height, setHeight] = useState<number | "">("");
   const [grayscale, setGrayscale] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [processedUrl, setProcessedUrl] = useState<string | null>(null);
   const [processedSize, setProcessedSize] = useState<number | null>(null);
 
@@ -26,10 +25,6 @@ export default function Home() {
     }
 
     setFile(selectedFile);
-
-    // Preview
-    const url = URL.createObjectURL(selectedFile);
-    setPreviewUrl(url);
 
     // Reset processed state
     setProcessedUrl(null);
