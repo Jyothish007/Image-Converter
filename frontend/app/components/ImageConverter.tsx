@@ -61,6 +61,7 @@ export default function ImageConverter() {
     formData.append("grayscale", grayscale.toString());
 
     setLoading(true);
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
 
     try {
       const res = await fetch(
